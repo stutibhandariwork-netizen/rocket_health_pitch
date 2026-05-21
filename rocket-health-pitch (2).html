@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket Health, Community & Retention Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #FF4D1C;
+    --ember: #FF8C42;
+    --fuel: #FFD166;
+    --deep: #0D0D12;
+    --void: #14141C;
+    --smoke: #1E1E2A;
+    --ash: #3A3A4E;
+    --mist: #8A8AA8;
+    --cloud: #C8C8DC;
+    --white: #F4F4FA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(255,77,28,.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 70%, rgba(255,140,66,.10) 0%, transparent 60%),
+                var(--deep);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,77,28,.15) 0%, transparent 70%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity: .6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp .6s .2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 130px);
+    line-height: .92;
+    letter-spacing: .02em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp .6s .4s forwards;
+  }
+
+  .hero h1 span { color: var(--fire); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--mist);
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp .6s .6s forwards;
+  }
+
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    opacity: 0;
+    animation: fadeUp .6s .8s forwards;
+  }
+
+  .pill {
+    border: 1px solid var(--ash);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--cloud);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .pill.hot { background: var(--fire); border-color: var(--fire); color: #fff; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 60px;
+    border-top: 1px solid var(--ash);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: .03em;
+    line-height: .95;
+    margin-bottom: 32px;
+    color: var(--white);
+  }
+
+  h2 .accent { color: var(--fire); }
+
+  /* ── STAT CARDS ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .stat-card {
+    background: var(--smoke);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background .2s;
+  }
+
+  .stat-card:hover { background: var(--ash); }
+
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--fire);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+
+  .stat-card:hover::after { transform: scaleX(1); }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--fire);
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--mist);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  .stat-source {
+    font-size: 10px;
+    color: var(--ash);
+    margin-top: 10px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── COMPETITOR TABLE ── */
+  .comp-table { width: 100%; border-collapse: collapse; margin: 40px 0; }
+  .comp-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--mist);
+    padding: 14px 20px;
+    background: var(--void);
+    border-bottom: 1px solid var(--ash);
+  }
+  .comp-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(58,58,78,.4);
+    font-size: 14px;
+    vertical-align: top;
+    color: var(--cloud);
+  }
+  .comp-table tr:hover td { background: rgba(255,77,28,.04); }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+  .badge-green { background: rgba(80,200,120,.15); color: #50C878; }
+  .badge-yellow { background: rgba(255,209,102,.12); color: var(--fuel); }
+  .badge-red { background: rgba(255,77,28,.12); color: var(--fire); }
+
+  /* ── STRATEGY PILLARS ── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 48px 0;
+  }
+
+  .pillar {
+    background: var(--smoke);
+    border: 1px solid var(--ash);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--ash);
+    position: absolute;
+    top: 12px; right: 20px;
+    z-index: 0;
+  }
+
+  .pillar-content { position: relative; z-index: 1; }
+
+  .pillar-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .pillar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: .05em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .pillar p {
+    font-size: 14px;
+    color: var(--mist);
+    line-height: 1.7;
+  }
+
+  .pillar ul {
+    list-style: none;
+    margin-top: 16px;
+  }
+
+  .pillar ul li {
+    font-size: 13px;
+    color: var(--cloud);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(58,58,78,.4);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pillar ul li::before { content: '→'; color: var(--fire); flex-shrink: 0; }
+
+  /* ── OUTCOMES ── */
+  .outcome-row {
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .outcome-label {
+    background: var(--smoke);
+    padding: 20px 28px;
+    min-width: 260px;
+    font-size: 14px;
+    color: var(--cloud);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  .outcome-bar-wrap {
+    flex: 1;
+    background: var(--smoke);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .outcome-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--fire), var(--ember));
+    animation: growBar 1.2s ease-out forwards;
+    transform-origin: left;
+  }
+
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .outcome-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--fuel);
+    white-space: nowrap;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 40px 0;
+  }
+
+  @media (max-width: 768px) {
+    .roadmap { grid-template-columns: 1fr; }
+    section { padding: 60px 24px; }
+    .hero { padding: 80px 24px 60px; }
+    .outcome-row { flex-direction: column; }
+    .outcome-label { min-width: unset; }
+  }
+
+  .phase {
+    background: var(--smoke);
+    padding: 32px 24px;
+  }
+
+  .phase-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 12px;
+  }
+
+  .phase h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: .05em;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .phase ul {
+    list-style: none;
+  }
+
+  .phase ul li {
+    font-size: 13px;
+    color: var(--mist);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(58,58,78,.3);
+    display: flex; gap: 10px;
+  }
+  .phase ul li::before { content: '○'; color: var(--ember); flex-shrink: 0; }
+
+  /* ── BRAND CALLOUT ── */
+  .brand-strip {
+    background: var(--fire);
+    padding: 64px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .brand-strip h2 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .brand-strip .tagline {
+    font-size: 18px;
+    color: rgba(255,255,255,.8);
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 60px;
+    background: var(--void);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-top: 1px solid var(--ash);
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: .05em;
+  }
+
+  .footer-brand span { color: var(--fire); }
+
+  footer p {
+    font-size: 12px;
+    color: var(--ash);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── DIVIDER ── */
+  .flame-divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--fire) 0%, var(--ember) 50%, transparent 100%);
+    margin: 0;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--fire);
+    padding: 16px 24px;
+    background: var(--smoke);
+    font-size: 15px;
+    color: var(--cloud);
+    font-style: italic;
+    margin: 32px 0;
+    line-height: 1.7;
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-style: normal;
+    font-family: 'DM Mono', monospace;
+    color: var(--mist);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">Community &amp; Retention Strategy Pitch · 2026</p>
+  <h1>ROCKET<br><span>HEALTH.</span></h1>
+  <p class="hero-sub">A community-led retention strategy for Rocket Health, building the system that makes users stay.</p>
+  <div class="hero-pills">
+    <span class="pill hot">🔥 Community First</span>
+    <span class="pill">Retention</span>
+    <span class="pill">Mental Health</span>
+    <span class="pill">Growth</span>
+  </div>
+</section>
+
+<div class="flame-divider"></div>
+
+<!-- THE PROBLEM -->
+<section>
+  <p class="section-label">01, The Problem</p>
+  <h2>MOST MENTAL<br>HEALTH APPS <span class="accent">LEAK</span></h2>
+  <p style="max-width:640px; color:var(--mist); font-size:16px; margin-bottom:32px; font-weight:300;">
+    Users download, get a little value, and disappear. Industry-average 30-day retention in mental health &amp; wellness apps sits below 9%. Without community, there is no stickiness, only churn.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">6.3%</div>
+      <div class="stat-label">Average 30-day retention on health &amp; fitness apps</div>
+      <div class="stat-source">Apptopia / EA Forum Analysis</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">8.3%</div>
+      <div class="stat-label">Calm's 30-day retention, one of the best in class</div>
+      <div class="stat-source">Apptopia</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">16%</div>
+      <div class="stat-label">Insight Timer, highest retention, driven by community features</div>
+      <div class="stat-source">Forbes / Apptopia</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">46%</div>
+      <div class="stat-label">Of employees would worry about job security if they discussed mental health at work</div>
+      <div class="stat-source">Mind Share Partners 2026</div>
+    </div>
+  </div>
+
+  <blockquote>
+    "Insight Timer's 16% retention is nearly double Calm's, the differentiator is a community layer that creates belonging and daily pull."
+    <cite>, Market Analysis, Apptopia / EA Forum</cite>
+  </blockquote>
+</section>
+
+<!-- WHAT COMPETITORS ARE DOING -->
+<section style="background: var(--void);">
+  <p class="section-label">02, Competitor Intelligence</p>
+  <h2>WHAT THE<br><span class="accent">MARKET</span> IS DOING</h2>
+  <p style="max-width:600px; color:var(--mist); font-size:15px; margin-bottom:8px; font-weight:300;">
+    The most successful mental health brands treat community as a product feature, not a marketing add-on.
+  </p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Community Strategy</th>
+        <th>Key Community Feature</th>
+        <th>Retention Signal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Insight Timer</strong></td>
+        <td>Peer-led groups, live events, teacher community</td>
+        <td>Group meditation sessions + teacher following</td>
+        <td><span class="badge badge-green">16% / 30-day</span></td>
+      </tr>
+      <tr>
+        <td><strong>Headspace</strong></td>
+        <td>Emotional resilience challenges; B2B community through employer</td>
+        <td>AI journal + daily engagement module (20% DAU lift)</td>
+        <td><span class="badge badge-yellow">7.6% / 30-day</span></td>
+      </tr>
+      <tr>
+        <td><strong>Calm</strong></td>
+        <td>Sleep communities; enterprise team wellness</td>
+        <td>Shared sleep streaks &amp; team challenges</td>
+        <td><span class="badge badge-yellow">8.3% / 30-day</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sanvello</strong></td>
+        <td>Peer support circles + optional professional escalation</td>
+        <td>Anonymous community forums with mood tracking integration</td>
+        <td><span class="badge badge-yellow">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>Pinterest (Pinside Out)</strong></td>
+        <td>Internal mental health community, drop-in forum + affinity group</td>
+        <td>Employee-led discussion + curated resource library</td>
+        <td><span class="badge badge-green">High internal NPS</span></td>
+      </tr>
+      <tr>
+        <td><strong>Unilever</strong></td>
+        <td>4,000 Mental Health Champions, peer-to-peer support network</td>
+        <td>Champion training + referral pathways to services</td>
+        <td><span class="badge badge-green">Lower absenteeism</span></td>
+      </tr>
+      <tr>
+        <td><strong>Modern Health</strong></td>
+        <td>Evidence-based social connection courses + community coaching</td>
+        <td>Group sessions + social connection curriculum</td>
+        <td><span class="badge badge-green">+5.5% retention vs non-users</span></td>
+      </tr>
+      <tr>
+        <td><strong>Wysa</strong></td>
+        <td>Biometric + AI-triggered peer interventions</td>
+        <td>Wearable stress detection → real-time community nudge</td>
+        <td><span class="badge badge-green">+15% retention lift</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <blockquote>
+    "The brands winning on retention treat community as infrastructure, not a feature. They build daily pull through belonging, not just content."
+    <cite>, Synthesis of market data</cite>
+  </blockquote>
+</section>
+
+<!-- COST OF CHURN -->
+<section style="background: var(--void);">
+  <p class="section-label">03, The Real Cost</p>
+  <h2>EVERY CHURNED USER IS<br>AD SPEND THAT <span class="accent">NEVER</span> COMPOUNDED</h2>
+  <p style="max-width:640px; color:var(--mist); font-size:15px; margin-bottom:40px; font-weight:300;">
+    A retention problem isn't just a product problem. It's a financial leak that gets worse the more you spend on acquisition.
+  </p>
+  <div class="stat-grid" style="margin-bottom:48px;">
+    <div class="stat-card">
+      <div class="stat-num">~92%</div>
+      <div class="stat-label">Of users lost before Month 2 at industry-average 6% retention. CAC gone. LTV zero.</div>
+      <div class="stat-source">Apptopia industry data</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3–5×</div>
+      <div class="stat-label">Cheaper to retain a user than reacquire them. Community is the cheapest growth channel you're not using.</div>
+      <div class="stat-source">Industry benchmark</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0%</div>
+      <div class="stat-label">Organic referral growth from a non-retained user base. Churned users don't refer. Loyal users do.</div>
+      <div class="stat-source">Word of mouth mechanics</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Ad dependency if retention isn't fixed. Growth only happens when spend runs. Community breaks that loop permanently.</div>
+      <div class="stat-source">Strategic reality</div>
+    </div>
+  </div>
+  <blockquote>
+    "Without retention, every rupee spent on ads is rented growth. With community, it compounds. The math is simple, the execution isn't, unless you've done it before."
+    <cite>, Stuti Bhandari</cite>
+  </blockquote>
+</section>
+
+<!-- KOOL KANYA PARALLEL -->
+<section>
+  <p class="section-label">04, The Closest Parallel</p>
+  <h2>I'VE ALREADY BUILT<br>THIS <span class="accent">COMMUNITY</span></h2>
+  <p style="max-width:640px; color:var(--mist); font-size:15px; margin-bottom:40px; font-weight:300;">
+    Kool Kanya was a career community platform for women. On the surface, different space. Underneath, the same trust problem, the same sensitivity, the same peer-loop mechanics required.
+  </p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px;">
+    <div style="background:var(--smoke); border:1px solid var(--ash); padding:36px 28px; border-radius:2px;">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--fire); margin-bottom:12px;">Kool Kanya</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--white); margin-bottom:20px;">Career community for women, built from zero</h3>
+      <ul style="list-style:none; margin:0;">
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:var(--fire); flex-shrink:0;">→</span>Deeply personal, emotionally charged topic, careers tied to identity and self-worth</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:var(--fire); flex-shrink:0;">→</span>Required trust, anonymity, psychological safety, same architecture as mental health</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:var(--fire); flex-shrink:0;">→</span>14× growth in 2 years through cohorts, expert AMAs, structured programming</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:var(--fire); flex-shrink:0;">→</span>DAU grew 3× in a single quarter with the right event rhythm</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; display:flex; gap:10px;"><span style="color:var(--fire); flex-shrink:0;">→</span>Built peer loops so the community ran without constant pushing</li>
+      </ul>
+    </div>
+    <div style="background:var(--smoke); border:1px solid var(--ash); padding:36px 28px; border-radius:2px;">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:#02C9A8; margin-bottom:12px;">Rocket Health</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--white); margin-bottom:20px;">The same playbook. A different sensitive space.</h3>
+      <ul style="list-style:none; margin:0;">
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:#02C9A8; flex-shrink:0;">→</span>Mental health struggles, just as personal, needs the same care and trust</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:#02C9A8; flex-shrink:0;">→</span>Trust before vulnerability, users won't engage without feeling safe first</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:#02C9A8; flex-shrink:0;">→</span>Cohort groups by condition/goal, small, structured, with clear purpose</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; border-bottom:1px solid rgba(58,58,78,.4); display:flex; gap:10px;"><span style="color:#02C9A8; flex-shrink:0;">→</span>Clinician AMAs + peer support, expert-plus-peer combination drives stickiness</li>
+        <li style="font-size:13px; color:var(--cloud); padding:8px 0; display:flex; gap:10px;"><span style="color:#02C9A8; flex-shrink:0;">→</span>Champions who refer and retain, peer trust is the strongest acquisition in mental health</li>
+      </ul>
+    </div>
+  </div>
+  <blockquote>
+    "The playbook already exists. The trust architecture, the cohort structure, the peer loops, I built all of it at Kool Kanya. I just need to run it in a new space."
+    <cite>, Stuti Bhandari</cite>
+  </blockquote>
+</section>
+
+<!-- THE STRATEGY -->
+<section>
+  <p class="section-label">05, Community Strategy</p>
+  <h2>THE FOUR<br><span class="accent">PILLARS</span></h2>
+  <p style="max-width:600px; color:var(--mist); font-size:15px; margin-bottom:8px; font-weight:300;">
+    The four-pillar system that turns Rocket Health from an acquisition machine into a retention engine. Each pillar is interconnected, together they create daily pull and lasting loyalty.
+  </p>
+
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">🛸</div>
+        <h3>MISSION CREWS</h3>
+        <p>Small accountability groups (10,15 people) organized by shared goal, sleep, anxiety, stress, grief. Not topic forums. Intimate crews with a shared mission arc.</p>
+        <ul>
+          <li>Weekly async check-ins via voice notes</li>
+          <li>Mission milestones with shared celebration</li>
+          <li>Optional clinician-in-the-room monthly</li>
+          <li>Private, anonymous by default</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">🔥</div>
+        <h3>RETENTION STREAKS</h3>
+        <p>Gamified consistency loops that reward daily engagement, not just app opens, but meaningful actions (journal entries, Crew check-ins, session completions).</p>
+        <ul>
+          <li>Streaks visualised as rocket trajectory</li>
+          <li>Crew-shared streaks for accountability</li>
+          <li>Recovery mechanics (no cold-start shame)</li>
+          <li>Monthly Progress Report, personalised data story</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">🎙️</div>
+        <h3>SIGNAL EVENTS</h3>
+        <p>Regular live programming that gives users a reason to return, not generic webinars. Intimate, human, repeatable events with real community members as hosts.</p>
+        <ul>
+          <li>Weekly "Launchpad" live group session</li>
+          <li>Monthly expert-in-residence AMA</li>
+          <li>User story spotlights (de-identified)</li>
+          <li>Quarterly in-person or hybrid gatherings</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">🧭</div>
+        <h3>CHAMPION NETWORK</h3>
+        <p>A trained cohort of peer champions, users who've seen results and want to give back. Modelled on Unilever's 4,000-champion programme. Creates social proof and referral flywheel.</p>
+        <ul>
+          <li>Champion certification pathway</li>
+          <li>Peer-to-peer first response layer</li>
+          <li>Internal ambassador for B2B clients</li>
+          <li>Champion-led Crew onboarding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GEN Z / MILLENNIAL PROGRAMMING -->
+<section>
+  <p class="section-label">06, Community Programming</p>
+  <h2>ACTIVITIES THAT MAKE<br>PEOPLE ACTUALLY <span class="accent">SHOW UP</span></h2>
+  <p style="max-width:680px; color:var(--mist); font-size:16px; margin-bottom:48px; font-weight:300;">
+    Gen Z and millennials don't join communities. They join <em style="color:var(--cloud);">things they want to tell their friends about.</em> The programming has to feel like a lifestyle, not a support group.
+  </p>
+
+  <!-- MOVE -->
+  <div style="margin-bottom:56px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:20px;">🏃 Move Together</div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🏃‍♀️</div>
+          <h3>ROCKET RUN CLUB</h3>
+          <p>Monthly 5K community runs in major cities, open to Rocket Health users. No timing, no competition. Just movement and conversation. Running is proven to reduce anxiety by 48%. We make it social.</p>
+          <ul>
+            <li>City-based chapters, Mumbai, Delhi, Bangalore first</li>
+            <li>Themed runs: "Run off the Sunday Scaries", "5K for your mind"</li>
+            <li>Post-run chai + debrief, the real community moment</li>
+            <li>Virtual run option for non-metro users</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🧘</div>
+          <h3>SUNDAY RESET</h3>
+          <p>Weekly 20-minute live group breathwork or yoga session every Sunday morning. Designed specifically for the Sunday anxiety that hits 78% of millennials before Monday. Free for all users.</p>
+          <ul>
+            <li>Live on app, no external platform needed</li>
+            <li>Rotating facilitators: therapists, certified instructors, peer leads</li>
+            <li>Streak mechanic: attend 4 Sundays = badge + community recognition</li>
+            <li>Recording available for async users in different timezones</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🚶‍♂️</div>
+          <h3>WALK & TALK</h3>
+          <p>Peer-matched 30-minute walking "dates", two community members matched by shared goal, same city, scheduled through the app. Walking side-by-side reduces the pressure of face-to-face emotional conversations.</p>
+          <ul>
+            <li>App-based matching by goal + location + availability</li>
+            <li>Optional anonymous mode, no last names required</li>
+            <li>Post-walk rating: "Would you walk again?" builds trust graph</li>
+            <li>Gen Z stat: 61% prefer walking meetings to sitting ones</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE -->
+  <div style="margin-bottom:56px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:20px;">🎨 Create Together</div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🎨</div>
+          <h3>MONTHLY ART SESSIONS</h3>
+          <p>Guided group art therapy sessions, online and in-person. Not art classes. Expressive art as a mental health tool. No skill required. Watercolour, collage, journaling-as-art. The output is optional to share.</p>
+          <ul>
+            <li>Theme each month: "What does anxiety feel like?", "Draw your safe space"</li>
+            <li>Facilitated by art therapists from the Rocket Health network</li>
+            <li>Optional community gallery, share your piece anonymously</li>
+            <li>Physical kit delivery for premium subscribers</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">05</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">✍️</div>
+          <h3>WRITE IT OUT</h3>
+          <p>Biweekly community journaling prompts with optional sharing. Journaling reduces depressive symptoms by up to 28%. We make it a group ritual, a shared moment, not a solo exercise done in isolation.</p>
+          <ul>
+            <li>In-app prompts every Monday + Thursday</li>
+            <li>"Share with crew" option, visible only to your cohort</li>
+            <li>Monthly "Letters to Myself", write now, receive in 3 months</li>
+            <li>Anonymous community board: best lines of the week</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">06</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🎙️</div>
+          <h3>STORY OPEN MIC</h3>
+          <p>Quarterly virtual open mic where community members share 3-minute mental health stories. De-identified. No last names. Inspired by The Moth format. The most powerful community moments come from real voices, not expert panels.</p>
+          <ul>
+            <li>Opt-in storytelling, never required, always celebrated</li>
+            <li>Live audience of community members + therapist host</li>
+            <li>Best stories turned into anonymous podcast episodes</li>
+            <li>Creates the "I could tell my story too" flywheel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONNECT -->
+  <div style="margin-bottom: 16px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:20px;">🤝 Connect Together</div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">07</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">☕</div>
+          <h3>MENTAL HEALTH CAFÉ</h3>
+          <p>Monthly drop-in community café, physical in metro cities, virtual elsewhere. No agenda. No therapist present. Just Rocket Health users, coffee, and open conversation. Safe, structured, but deliberately informal.</p>
+          <ul>
+            <li>Rotating cities: one new city every quarter</li>
+            <li>Community-led: trained peer facilitator, not a clinician</li>
+            <li>Theme suggested but never enforced</li>
+            <li>Instagram-worthy, designed to be shareable</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">08</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🎮</div>
+          <h3>WELLNESS CHALLENGES</h3>
+          <p>Monthly team-based wellness challenges for cohort groups, sleep streaks, screen-free evenings, daily walks, gratitude logging. Competitive enough to be fun. Gentle enough to be safe for mental health contexts.</p>
+          <ul>
+            <li>"30 days of 7-hour sleep", tracked in app</li>
+            <li>"Digital detox weekends" with crew accountability</li>
+            <li>Leaderboard visible to crew only, not public</li>
+            <li>Winner: free therapy session for the whole crew</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">09</div>
+        <div class="pillar-content">
+          <div class="pillar-icon">🌙</div>
+          <h3>NIGHT OWL CHECK-INS</h3>
+          <p>Late-night async voice note check-ins for users who struggle at night, 10pm to 1am window. Not therapy. Not moderated chat. Just a place to record a voice note and hear you're not alone. Designed for the hardest hours.</p>
+          <ul>
+            <li>Voice note format, lower barrier than typing</li>
+            <li>Crew members get notified: "someone in your crew checked in"</li>
+            <li>Optional: auto-suggest booking a therapist next morning</li>
+            <li>Directly addresses the gap that kills night-time retention</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why it works callout -->
+  <div style="background:var(--smoke); border-left: 3px solid var(--fire); padding: 32px 36px; margin-top: 48px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:16px;">Why this works for Gen Z + Millennials</div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--fire);">73%</div>
+        <div style="font-size:13px; color:var(--mist);">of Gen Z say they're more likely to engage with brands that feel like a community, not a service</div>
+      </div>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--fire);">61%</div>
+        <div style="font-size:13px; color:var(--mist);">of millennials would pay more for a mental health product that included IRL community events</div>
+      </div>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--fire);">4×</div>
+        <div style="font-size:13px; color:var(--mist);">higher retention when users attend even one live or in-person brand event within their first 30 days</div>
+      </div>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--fire);">82%</div>
+        <div style="font-size:13px; color:var(--mist);">of Gen Z say they discovered a mental health product through a friend, community is also acquisition</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- INDIA COMMUNITY TREND DATA -->
+  <div style="background:var(--smoke); border:1px solid var(--ash); padding:40px 36px; margin-top:56px; border-radius:2px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:20px;">📍 India-Specific Data, Why This Is the Right Moment</div>
+    <h3 style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--white); margin-bottom:24px; letter-spacing:.03em;">THE OFFLINE COMMUNITY BOOM IS ALREADY HAPPENING IN INDIA</h3>
+    <p style="font-size:15px; color:var(--mist); max-width:800px; line-height:1.7; margin-bottom:40px;">These aren't global trends trickling into India. They're already here, growing fast, and mostly leaderless. Rocket Health has the chance to own a category that has no clear brand yet.</p>
+
+    <div class="stat-grid" style="margin-bottom:48px;">
+      <div class="stat-card">
+        <div class="stat-num">59%</div>
+        <div class="stat-label">Global run club membership surge in 2024 (Strava). India cities like Mumbai, Pune, Delhi are leading the charge with consumer-founded clubs partnering with Puma, Red Bull, Blue Tokai.</div>
+        <div class="stat-source">Strava Year in Sport 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">₹1.70B</div>
+        <div class="stat-label">India board game market in 2024, projected ₹3.80B by 2033. Board game café meetups in Delhi, Mumbai report 10,20% revenue spikes on event nights. Members show up 6,7 times a month.</div>
+        <div class="stat-source">IMARC Group 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Members joined the Indiahikes Mumbai trekking club within its first month (Dec 2026), hosting 5 events. Hyderabad chapter ran 42 events covering 600km since mid-2026.</div>
+        <div class="stat-source">Indiahikes InTrek Club 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">43%</div>
+        <div class="stat-label">Of Indian millennials are now spending more on healthy food, 41% on activewear, 36% on gym and fitness. Wellness is no longer optional, it's identity.</div>
+        <div class="stat-source">Mintel India Report 2022</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px;">
+      <div style="background:var(--void); padding:28px 24px; border-left:3px solid var(--fire);">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--white); margin-bottom:10px;">🏃 RUN CLUBS, THE INDIA STORY</div>
+        <p style="font-size:13px; color:var(--mist); line-height:1.7;">Consumer-led clubs are sprouting across Mumbai, Pune, Delhi and smaller cities. Bombay Running, Pudhe Chala Mumbai, We Persist Club (Pune) are already partnering with brands. Nike hosted a women-only 10km night run in Mumbai in 2026. Run clubs are becoming India's new "third space", beyond home and office.</p>
+      </div>
+      <div style="background:var(--void); padding:28px 24px; border-left:3px solid var(--fire);">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--white); margin-bottom:10px;">🎲 BOARD GAME CAFÉS, EVEN TIER 2</div>
+        <p style="font-size:13px; color:var(--mist); line-height:1.7;">Board game communities are now in Bhubaneswar, not just metros. "People are craving meaningful offline connections," says the founder of Boards of Bhubaneswar. All Things Fun (Delhi) charges ₹250/month and sees members showing up 6,7 times monthly. The repeat rate is "off the charts."</p>
+      </div>
+      <div style="background:var(--void); padding:28px 24px; border-left:3px solid var(--fire);">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--white); margin-bottom:10px;">🧘 WELLNESS COMMUNITIES, EXPLODING</div>
+        <p style="font-size:13px; color:var(--mist); line-height:1.7;">Storytelling sessions, group art therapy, Sufi meditation, and devotional singing circles are all gaining traction in urban India in 2026,26. Fitness tourism, Himalayan trekking, Goa boot camps are now driven by community, not solo travel. Indians want experiences they can share.</p>
+      </div>
+      <div style="background:var(--void); padding:28px 24px; border-left:3px solid var(--fire);">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--white); margin-bottom:10px;">📣 THE REFERRAL INSIGHT</div>
+        <p style="font-size:13px; color:var(--mist); line-height:1.7;">For Gen Z and millennials in India, word-of-mouth from friends and family is the most important source when choosing brands. A great Rocket Health run club or art session doesn't just retain users, it acquires new ones. Community is both retention AND acquisition.</p>
+      </div>
+    </div>
+  </div>
+
+
+<!-- REVENUE IMPACT -->
+<section style="background: var(--void);">
+  <p class="section-label">06.5, Revenue Impact</p>
+  <h2>HOW COMMUNITY<br>DIRECTLY <span class="accent">GROWS REVENUE</span></h2>
+  <p style="max-width:680px; color:var(--mist); font-size:16px; margin-bottom:48px; font-weight:300;">
+    Community isn't a cost centre. When built with retention and conversion in mind, it becomes the most efficient revenue channel on the P&L. Here's exactly how.
+  </p>
+
+  <!-- Revenue mechanic cards -->
+  <div class="pillar-grid" style="margin-bottom:56px;">
+
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">🔁</div>
+        <h3>RETAINED USERS BUY MORE</h3>
+        <p>A user who stays past 90 days is significantly more likely to upgrade, book more sessions, and spend more per month. Community creates the habit loop that keeps them past that threshold. At the D2C brand I worked with, retained users drove 38% returning purchases in a single month, from zero system.</p>
+        <ul>
+          <li>Higher session booking frequency from engaged users</li>
+          <li>Upsell to premium plans through community milestones</li>
+          <li>Subscription renewal rates rise when users have peer accountability</li>
+          <li>LTV of a community member vs solo user: estimated 2,3× higher</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">📧</div>
+        <h3>EMAIL BECOMES A REVENUE CHANNEL</h3>
+        <p>Right now email is doing minor marketing work. With a proper lifecycle system, it becomes a direct revenue driver. At the US D2C brand I worked with, email contributed 20% of total monthly revenue with 35,40% open rates and 2,7% click rates, built from scratch.</p>
+        <ul>
+          <li>Onboarding sequence drives first session booking completion</li>
+          <li>Re-engagement flow reactivates lapsed users before they churn</li>
+          <li>Milestone emails ("you've had 5 sessions") prompt upgrades</li>
+          <li>Community event emails drive return visits and upsell moments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">📣</div>
+        <h3>COMMUNITY MEMBERS REFER</h3>
+        <p>In mental health, trust is the acquisition channel. A user who belongs to a community, attends a run club, or has a crew of 10,15 people they check in with weekly will tell people about it. Word-of-mouth from retained users is free acquisition. At Blink Digital, community-led engagement drove 18% upsell uplift without increasing ad spend.</p>
+        <ul>
+          <li>Champion programme creates a formal referral layer</li>
+          <li>Run clubs and events are inherently shareable, driving organic reach</li>
+          <li>Referred users have higher trust, faster conversion, lower CAC</li>
+          <li>82% of Gen Z discover mental health products through friends</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-content">
+        <div class="pillar-icon">💼</div>
+        <h3>B2B SALES UNLOCK</h3>
+        <p>A strong user community is a sales asset for corporate clients. When Rocket Health pitches to an employer for an employee mental health programme, a thriving community with run clubs, art sessions, and measurable engagement data is a compelling proof point that competitors without community simply can't match.</p>
+        <ul>
+          <li>Community metrics (DAU, event attendance, NPS) become sales collateral</li>
+          <li>Corporate clients see lower absenteeism when employees are in community</li>
+          <li>Champion programme provides built-in employee advocates inside client orgs</li>
+          <li>Industry data: $4 return per $1 invested in mental health community (Modern Health)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Revenue projection strip -->
+  <div style="background:var(--smoke); border:1px solid var(--ash); padding:40px 36px; margin-bottom:48px;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fire); margin-bottom:20px;">What the numbers look like at scale</div>
+    <div class="stat-grid" style="margin:0;">
+      <div class="stat-card">
+        <div class="stat-num">20%</div>
+        <div class="stat-label">Of total revenue attributable to email alone, based on my own D2C results. That's new revenue from a channel currently doing almost nothing.</div>
+        <div class="stat-source">D2C Brand (US), proven</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">38%</div>
+        <div class="stat-label">Monthly returning users when retention system is in place. Every returning user is a session booked, a subscription renewed, a plan upgraded.</div>
+        <div class="stat-source">D2C Brand (US), proven</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18%</div>
+        <div class="stat-label">Upsell uplift from community-led conversion, turning a broadcast channel into a commercial engine. No extra ad spend required.</div>
+        <div class="stat-source">Blink Digital, proven</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$4:$1</div>
+        <div class="stat-label">Return on every rupee invested in mental health community programmes, including lower healthcare costs, better retention, and higher productivity for B2B clients.</div>
+        <div class="stat-source">Modern Health industry data</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The compounding argument -->
+  <blockquote>
+    "Ads bring users in once. Community brings them back every week, makes them buy more, and makes them tell their friends. That's not a marketing cost, it's a compounding revenue asset. And right now Rocket Health is paying for acquisition but not capturing any of the compound."
+    <cite>, Stuti Bhandari</cite>
+  </blockquote>
+
+</section>
+
+<!-- EXPECTED OUTCOMES -->
+<section style="background: var(--void);">
+  <p class="section-label">07, Expected Results</p>
+  <h2>WHAT <span class="accent">IGNITION</span><br>LOOKS LIKE</h2>
+  <p style="max-width:600px; color:var(--mist); font-size:15px; margin-bottom:40px; font-weight:300;">
+    Based on comparable community interventions across the competitive set. Targets are conservative, set against known benchmarks.
+  </p>
+
+  <div style="margin-bottom: 8px;">
+    <div class="outcome-row">
+      <div class="outcome-label">30-Day Retention</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 72%;"></div>
+        <div class="outcome-val">+60–90% vs baseline</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">Daily Active Rate</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 55%;"></div>
+        <div class="outcome-val">+20% (Headspace benchmark)</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">User NPS</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 65%;"></div>
+        <div class="outcome-val">+15–25 pts lift</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">Turnover (B2B clients)</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 50%;"></div>
+        <div class="outcome-val">Up to −28% (industry data)</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">Biometric Retention Lift</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 30%;"></div>
+        <div class="outcome-val">+15% (Wysa benchmark)</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">Healthcare Cost Reduction (B2B)</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 80%;"></div>
+        <div class="outcome-val">79% of employers see lower claims</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-label">ROI per $ spent</div>
+      <div class="outcome-bar-wrap">
+        <div class="outcome-bar" style="width: 85%;"></div>
+        <div class="outcome-val">$4 return per $1 (Modern Health)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-grid" style="margin-top:40px;">
+    <div class="stat-card">
+      <div class="stat-num">80%</div>
+      <div class="stat-label">Of employees more likely to stay at a company offering high-quality mental health resources</div>
+      <div class="stat-source">Forrester / Modern Health</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">Less likely to experience burnout or depression when employer invests in mental health</div>
+      <div class="stat-source">Mind Share Partners 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$4:$1</div>
+      <div class="stat-label">ROI ratio, every dollar invested returns four in productivity and savings</div>
+      <div class="stat-source">Modern Health</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">60%</div>
+      <div class="stat-label">Of job candidates now prioritise employers with strong mental health programs</div>
+      <div class="stat-source">McPherson Berry 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section style="background: var(--void);">
+  <p class="section-label">08, Execution Roadmap</p>
+  <h2>LAUNCH<br><span class="accent">SEQUENCE</span></h2>
+
+  <div class="roadmap">
+    <div class="phase">
+      <div class="phase-tag">Phase 1 · Months 1–3</div>
+      <h3>IGNITION</h3>
+      <ul>
+        <li>Launch 10 pilot Mission Crews (50–80 users)</li>
+        <li>Build retention streak mechanics in product</li>
+        <li>Recruit 20 founding Champions</li>
+        <li>First 3 Signal Events (live)</li>
+        <li>Baseline NPS &amp; retention measurement</li>
+        <li>Community platform selection (Circle, Mighty Networks, custom)</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Phase 2 · Months 4–6</div>
+      <h3>LIFT OFF</h3>
+      <ul>
+        <li>Scale to 100+ Mission Crews</li>
+        <li>Champion certification programme launches</li>
+        <li>B2B rollout, white-label Crews for corporate clients</li>
+        <li>First Progress Report to all community members</li>
+        <li>Monthly live AMA series with clinicians</li>
+        <li>Retention &amp; NPS checkpoint vs baseline</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-tag">Phase 3 · Months 7–12</div>
+      <h3>ORBIT</h3>
+      <ul>
+        <li>Community self-sustaining with Champion-led Crews</li>
+        <li>Quarterly in-person events (major cities)</li>
+        <li>Champion referral programme driving new user acquisition</li>
+        <li>AI-powered Crew matching v2 (by goal + personality)</li>
+        <li>Annual community impact report (public)</li>
+        <li>Full ROI report for B2B clients</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND CALLOUT -->
+<div class="brand-strip">
+  <div>
+    <h2 style="color:#fff; font-size:clamp(40px,6vw,80px);">COMMUNITY<br>IS THE PRODUCT.</h2>
+    <p class="tagline">Community is not a feature. It's the reason users stay, refer, and believe. A well-built community turns Rocket Health from an app into a movement.</p>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:80px; line-height:1; color:rgba(255,255,255,.2);">🚀</div>
+  </div>
+</div>
+
+<!-- KPIs FOOTER -->
+<section>
+  <p class="section-label">09, How We Measure Success</p>
+  <h2>NORTH STAR<br><span class="accent">METRICS</span></h2>
+
+  <div class="pillar-grid">
+    <div class="pillar" style="border-color: var(--fire);">
+      <div class="pillar-content">
+        <h3>RETENTION RATE</h3>
+        <p style="font-size:13px;">30-day and 90-day user retention. Target: match Insight Timer's 16% 30-day rate within 12 months (vs current industry avg of 6–8%).</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>COMMUNITY ENGAGEMENT</h3>
+        <p style="font-size:13px;">% of active users in at least one Mission Crew. % attending monthly Signal Events. Champion-to-user ratio.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>CLINICAL OUTCOMES</h3>
+        <p style="font-size:13px;">PHQ-9 / GAD-7 delta for community vs solo users. Burnout score reduction. Absenteeism and presenteeism for B2B clients.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>REVENUE IMPACT</h3>
+        <p style="font-size:13px;">Churn rate reduction. B2B contract renewal rates. Community-sourced referrals as % of new user acquisition. LTV uplift for community members.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">ROCKET <span>HEALTH</span>, COMMUNITY &amp; RETENTION</div>
+  <p>COMMUNITY &amp; RETENTION STRATEGY · INTERNAL PITCH · 2026</p>
+</footer>
+
+
+<!-- WHY NOW -->
+<section>
+  <p class="section-label">10, Why This Hire, Why Now</p>
+  <h2>THE MENTAL HEALTH<br>MARKET IS AT AN <span class="accent">INFLECTION</span></h2>
+  <p style="max-width:640px; color:var(--mist); font-size:15px; margin-bottom:40px; font-weight:300;">
+    The window to build community moat in mental health is 12–18 months. After that, the brands that moved early will be impossible to displace.
+  </p>
+
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-content">
+        <div class="pillar-icon">🔥</div>
+        <h3>DEMAND HAS NEVER BEEN HIGHER</h3>
+        <p>60% of job seekers now prioritise mental health benefits. Demand for mental health brands is at an all-time high. Brands that build loyalty now capture this wave permanently, not just for a quarter.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <div class="pillar-icon">⚡</div>
+        <h3>COMPETITORS ARE MOVING FAST</h3>
+        <p>Headspace, Calm, and Wysa are all actively building community and retention systems right now. The window to lead, rather than follow, is 12 to 18 months. After that, you're catching up.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <div class="pillar-icon">🎯</div>
+        <h3>YOU ALREADY HAVE THE AUDIENCE</h3>
+        <p>Most brands have to pay to build reach. Rocket Health already has it. The only gap is a system to keep them. This is the cheapest possible growth, you've already paid to acquire the users.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <div class="pillar-icon">💬</div>
+        <h3>REFERRAL IS THE MOAT</h3>
+        <p>Retained mental health users are 2× more likely to refer. In a trust-driven category, word of mouth from loyal users is the most powerful, and most defensible, acquisition channel. Community creates that engine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME, EXPANDED -->
+<section style="background: var(--void);">
+  <p class="section-label">11, Why I Am The Right Person</p>
+  <h2>NOT JUST SKILLS.<br>THE RIGHT <span class="accent">INSTINCTS</span></h2>
+
+  <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap: 40px; margin-bottom:48px;">
+    <div>
+      <p style="font-size:16px; color:var(--cloud); line-height:1.8; margin-bottom:20px;">
+        I've never done community for vanity metrics. Every community I've built had a real business outcome, <strong style="color:var(--white);">revenue, retention, or cost reduction.</strong>
+      </p>
+      <p style="font-size:15px; color:var(--mist); line-height:1.8; margin-bottom:20px;">
+        At <strong style="color:var(--cloud);">Kool Kanya (Welspun Group)</strong>, I understood that women discussing career pivots needed the same care Rocket Health's users need, anonymity, peer trust, no judgment. 14x community growth in 2 years, DAU 3x in a single quarter, 50% engagement spike during the GetHired job fair with 30+ companies and 150+ roles. Built entirely on structured programming, cohorts, and peer loops.
+      </p>
+      <p style="font-size:15px; color:var(--mist); line-height:1.8; margin-bottom:20px;">
+        At <strong style="color:var(--cloud);">Oracle University</strong>, I scaled from 23K to 996K members by making community the first point of contact for queries, cutting support tickets by 60%+, and building a peer-to-peer knowledge loop through Ask the Experts sessions, SME deep dives, and a Champions Programme.
+      </p>
+      <p style="font-size:15px; color:var(--mist); line-height:1.8; margin-bottom:20px;">
+        At a <strong style="color:var(--cloud);">US D2C brand</strong>, I drove 38% returning users and 20% of total revenue through email, with 35,40% open rates and 2,7% click rates, from zero. 200 community members built in 8 months, zero paid acquisition, +10% engagement every single month.
+      </p>
+      <p style="font-size:15px; color:var(--mist); line-height:1.8; margin-bottom:20px;">
+        At <strong style="color:var(--cloud);">Blink Digital</strong>, I built the CRM from scratch on HubSpot, automated onboarding with Zapier, structured the full pipeline from first touch to conversion, and turned a 500+ founder WhatsApp and Telegram community from broadcast-only to conversion engine, 3x audience growth and 18% uplift in upsells.
+      </p>
+      <p style="font-size:15px; color:var(--mist); line-height:1.8;">
+        At <strong style="color:var(--cloud);">LikeMinds</strong>, built a content engine from zero: 23,30% newsletter open rate, 2.5,5% clicks, 1.5x website visits in 6 months, LinkedIn page +10% in one year. At <strong style="color:var(--cloud);">Lokaal</strong>, co-founded a media community of 7,000 members in 8 months, zero ads, won CII Student Entrepreneur of the Year.
+      </p>
+    </div>
+    <div>
+      <div class="stat-grid" style="grid-template-columns: 1fr 1fr; gap:2px; margin:0;">
+        <div class="stat-card">
+          <div class="stat-num" style="font-size:38px;">996K</div>
+          <div class="stat-label">Members scaled at Oracle University from 23,000 in 2 years. 60%+ reduction in support tickets.</div>
+          <div class="stat-source">Oracle University</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="font-size:38px;">14×</div>
+          <div class="stat-label">Community growth at Kool Kanya in 2 years. DAU 3x in one quarter. 50% engagement spike at job fair.</div>
+          <div class="stat-source">Kool Kanya / Welspun</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="font-size:38px;">38%</div>
+          <div class="stat-label">Monthly returning users at US D2C brand. 20% of total revenue via email. 200 members, zero ads.</div>
+          <div class="stat-source">D2C Brand (US)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="font-size:38px;">18%</div>
+          <div class="stat-label">Upsell uplift at Blink Digital. CRM built from zero. 3x audience growth on WhatsApp and Telegram.</div>
+          <div class="stat-source">Blink Digital</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>SENSITIVE SPACE INSTINCT</h3>
+        <p>Kool Kanya taught me that community in emotionally charged spaces requires trust architecture first, not content calendars. You don't push. You create conditions for people to pull themselves in. Mental health needs this more than any other space.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>I OWN THE FULL STACK</h3>
+        <p>Community strategy, email systems, CRM, cohort analysis, event programming, UGC, retention loops, I don't hand any of it off. One person, full ownership, no coordination tax. For an early-stage team, that matters enormously.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-content">
+        <h3>I MOVE FAST WITH DATA</h3>
+        <p>I use data to find the leak, cohort analysis, engagement mapping, AARRR, then I go talk to users to understand why. The fix is almost never what the dashboard suggests first. This instinct is what makes the difference between a strategy and a system that actually works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">ROCKET <span>HEALTH</span>, COMMUNITY &amp; RETENTION</div>
+  <p>COMMUNITY &amp; RETENTION STRATEGY · STUTI BHANDARI · 2026</p>
+</footer>
+
+</body>
+</html>
